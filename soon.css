@@ -1,0 +1,164 @@
+/* --- SETUP WARNA & FONT --- */
+:root {
+    --color-pink: #d5006d;
+    --color-yellow: #FFF500;
+    --color-teal: #004d4d; /* Background Utama */
+    --color-dark: #1a1a40;
+    --font-main: 'Montserrat', sans-serif;
+    --font-title: 'Luckiest Guy', cursive; /* Font Judul Fun */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-main); overflow: hidden; /* Mencegah scroll */ background-color: var(--color-teal); }
+a { text-decoration: none; }
+ul { list-style: none; }
+
+/* --- NAVBAR --- */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 40px; position: fixed; width: 100%; top: 0; z-index: 100;
+    background: transparent;
+}
+.logo { font-weight: 900; font-size: 1.8rem; }
+.ykc-yellow { color: var(--color-yellow); }
+.festival-pink { color: var(--color-pink); font-size: 0.8rem; display: block; text-align: right; margin-top: -5px; }
+
+.nav-links { display: flex; gap: 40px; }
+.nav-links a { font-weight: 700; color: white; transition: 0.3s; }
+.nav-links a:hover { color: var(--color-yellow); }
+
+.btn-rect-pink {
+    background: var(--color-pink); color: var(--color-yellow);
+    padding: 8px 25px; font-weight: 900; text-transform: uppercase;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.3); color: var(--color-yellow) !important;
+}
+
+/* --- MAIN SECTION --- */
+.soon-section {
+    height: 100vh; width: 100%;
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+    background: radial-gradient(circle, #006060 0%, #004d4d 70%);
+}
+
+/* Pola Background Samar */
+.bg-pattern {
+    position: absolute; width: 100%; height: 100%;
+    background-image: radial-gradient(var(--color-yellow) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.1;
+}
+
+.content-box {
+    text-align: center;
+    z-index: 2;
+    padding: 20px;
+    max-width: 600px;
+}
+
+/* --- ICON ROCKET ANIMATION --- */
+.icon-wrapper {
+    font-size: 4rem; color: var(--color-yellow);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.rocket-anim {
+    animation: floatRocket 2s infinite ease-in-out;
+    filter: drop-shadow(0 0 10px rgba(255, 245, 0, 0.5));
+}
+
+@keyframes floatRocket {
+    0%, 100% { transform: translateY(0) rotate(-45deg); }
+    50% { transform: translateY(-15px) rotate(-45deg); }
+}
+
+/* --- TYPOGRAPHY --- */
+.soon-title {
+    font-family: var(--font-title);
+    font-size: 5rem;
+    color: var(--color-pink);
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 4px 4px 0px var(--color-yellow);
+    margin-bottom: 10px;
+}
+
+.soon-subtitle {
+    font-family: var(--font-main);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.soon-desc {
+    color: #eee;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* --- FORM NOTIFIKASI --- */
+.notify-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.notify-form input {
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    width: 250px;
+    font-family: var(--font-main);
+    outline: none;
+}
+
+.btn-notify {
+    background-color: var(--color-yellow);
+    color: var(--color-pink);
+    border: 2px solid var(--color-pink);
+    padding: 12px 25px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--color-pink);
+    transition: 0.2s;
+}
+
+.btn-notify:hover {
+    transform: translate(-2px, -2px);
+    background-color: white;
+}
+
+.back-link {
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+.back-link:hover { color: white; }
+
+/* --- FOOTER --- */
+.floating-footer {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    padding: 20px 40px; display: flex; align-items: flex-end;
+    pointer-events: none;
+}
+.social-box {
+    background: var(--color-yellow); padding: 10px 20px;
+    border: 2px solid var(--color-pink); display: flex; gap: 15px;
+    box-shadow: 4px 4px 0px var(--color-pink);
+    pointer-events: auto;
+}
+.social-box a { color: var(--color-pink); font-size: 1.2rem; }
+
+/* Responsive HP */
+@media (max-width: 768px) {
+    .soon-title { font-size: 3.5rem; }
+    .notify-form { flex-direction: column; align-items: center; }
+    .notify-form input { width: 100%; }
+    .navbar { display: none; } /* Hide navbar di HP biar fokus ke pesan */
+}

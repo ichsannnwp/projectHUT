@@ -179,12 +179,13 @@ ul { list-style: none; }
 .hero-mini {
     height: 60vh; position: relative; 
     display: flex; align-items: center; justify-content: center;
-    background: url('assets/detail-bg.jpg') no-repeat center center/cover;
+    background: url('assets/tugu.jpg') no-repeat center center/cover;
     margin-top: 80px; 
 }
 .hero-overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to right, rgba(26,26,64,0.9), rgba(26,26,64,0.4));
+    
 }
 .hero-mini .content-wrapper { position: relative; z-index: 2; text-align: left; padding: 0 20px;}
 .intro-title { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: white; }

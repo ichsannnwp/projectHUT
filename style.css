@@ -242,8 +242,8 @@ html { scroll-behavior: smooth; }
     width: max-content;
 }
 .event-card h3 { 
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, sans-serif; 
-    font-size: 1.2rem; 
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.8rem; 
     margin: 15px 0; 
     text-transform: uppercase; 
     text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
