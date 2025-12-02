@@ -1,0 +1,341 @@
+/* --- 1. SETUP & VARIABEL --- */
+:root {
+    --color-pink: #FF00CC;
+    --color-yellow: #FFF500;
+    --color-dark-blue: #1a1a40;
+    --color-white: #ffffff;
+    
+    /* Jadwal Colors */
+    --bg-teal: #004d4d;
+    --star-teal: #006060;
+    --card-blue: #4d79ff;
+    --card-orange: #ff6633;
+    --card-pink: #ff6680;
+
+    /* About Colors */
+    --bg-salmon: #ff9da1;
+    --purple-shadow: #b30089;
+
+    /* Fonts */
+    --font-main: 'Montserrat', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+    --font-anton: 'Anton', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; }
+ul { list-style: none; }
+html { scroll-behavior: smooth; }
+
+/* --- 2. NAVBAR --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: transparent;
+    transition: 0.3s;
+}
+.navbar.scrolled { background: rgba(26, 26, 64, 0.95); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+.logo { font-weight: 900; font-size: 1.8rem; letter-spacing: 1px; }
+.ykc-yellow { color: var(--color-yellow); }
+.festival-pink { color: var(--color-pink); font-size: 0.8rem; display: block; margin-top: -5px; text-align: right; }
+
+.nav-links { display: flex; gap: 40px; }
+.nav-links li a { color: var(--color-white); font-weight: 700; font-size: 1.1rem; transition: 0.3s; }
+.nav-links li a:hover, .nav-links li a.active { color: var(--color-yellow); }
+
+/* --- 3. REUSABLE COMPONENTS --- */
+.btn-rect-pink {
+    background-color: var(--color-pink);
+    color: var(--color-yellow);
+    padding: 10px 30px;
+    font-weight: 900;
+    text-transform: uppercase;
+    display: inline-block;
+    border-radius: 0;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+.btn-rect-pink:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px rgba(0,0,0,0.3); }
+
+.section-footer { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; padding: 0 40px; }
+.absolute-bottom { position: absolute; bottom: 30px; left: 0; }
+.about-adjust { margin-top: 60px; }
+
+/* --- 4. HERO SECTION --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+.bg-video {
+    position: absolute; top: 50%; left: 50%;
+    min-width: 100%; min-height: 100%;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover; z-index: -2;
+}
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(26, 26, 64, 0.6); z-index: -1;
+}
+.hero-content { z-index: 2; padding: 20px; }
+.main-title {
+    font-size: 4rem; font-weight: 900; color: var(--color-yellow);
+    line-height: 1.1; margin-bottom: 10px; text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+.sub-title { font-size: 1.5rem; color: var(--color-white); margin-bottom: 30px; font-style: italic; }
+.btn-large { padding: 15px 40px; font-size: 1.2rem; }
+
+
+/* --- 5. ORCHESTRA SECTION --- */
+.event-section {
+    position: relative;
+    background-color: var(--color-yellow);
+    padding: 80px 0 40px;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    color: #000;
+}
+.container {
+    display: flex; align-items: center; justify-content: center;
+    gap: 60px; max-width: 1200px; margin: 0 auto 50px; padding: 0 20px;
+}
+.event-image { flex: 1; text-align: center; }
+.event-image img {
+    width: 100%; max-width: 400px; /* SIZE REDUCED */
+    height: auto; object-fit: cover;
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+    border: 5px solid var(--color-dark-blue);
+}
+.event-text { flex: 1; text-align: left; }
+.royal-title {
+    font-family: var(--font-serif); font-size: 3.5rem;
+    color: var(--color-pink); line-height: 1.1; margin-bottom: 25px;
+}
+.royal-desc {
+    font-family: var(--font-main); font-weight: 600; font-size: 1rem;
+    line-height: 1.6; margin-bottom: 30px; color: #222; text-align: justify;
+}
+.shadow-style { box-shadow: 5px 5px 0px rgba(128, 0, 128, 0.4); font-size: 1.2rem; }
+
+/* Orchestra Footer */
+
+
+/* --- 6. SCHEDULE SECTION --- */
+.schedule-section {
+    position: relative; background-color: var(--bg-teal);
+    padding: 60px 0; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden;
+}
+.bg-star-pattern {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 120%; height: 120%; background-color: var(--star-teal);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    z-index: 0; opacity: 0.4; border-radius: 50px;
+}
+.schedule-container { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; text-align: center; }
+.section-header { margin-bottom: 50px; }
+.schedule-title { font-family: var(--font-anton); font-size: 3.5rem; color: var(--color-yellow); text-transform: uppercase; letter-spacing: 2px; }
+.schedule-subtitle { color: white; font-weight: 600; font-size: 1.1rem; }
+
+.slider-wrapper { display: flex; align-items: center; justify-content: center; gap: 20px; }
+/* Update bagian ini di style.css */
+/* --- UPDATE BAGIAN INI DI style.css --- */
+
+.cards-container {
+    display: flex;
+    gap: 30px; /* Jarak antar kartu */
+    
+    /* KUNCI AGAR BISA DIGESER: */
+    overflow-x: auto; /* Izinkan scroll ke samping */
+    flex-wrap: nowrap; /* Paksa item tidak turun ke bawah */
+    scroll-behavior: smooth; /* Animasi geser halus */
+    
+    padding: 30px 10px; /* Padding agar shadow kartu tidak terpotong */
+    width: 100%;
+    
+    /* Agar kartu pertama mulai dari kiri, bukan tengah */
+    justify-content: flex-start; 
+    align-items: stretch;
+
+    /* Sembunyikan Scrollbar default browser agar lebih rapi */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Sembunyikan scrollbar untuk Chrome, Safari, Opera */
+.cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Pastikan kartu tidak mengecil (gepeng) saat layar sempit */
+.event-card {
+    min-width: 300px; /* Ukuran fix agar tidak menciut */
+    max-width: 300px;
+    flex-shrink: 0; /* Mencegah kartu mengecil */
+    
+    /* Style lama tetap sama di bawah ini */
+    padding: 40px 20px 30px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    color: white;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Sembunyikan Scrollbar untuk Chrome/Safari/Opera */
+.cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+.event-card {
+    width: 300px; padding: 40px 20px 30px;
+    border-radius: 15px; text-align: center; position: relative; color: white;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 350px;
+}
+.card-blue { background-color: var(--card-blue); }
+.card-orange { background-color: var(--card-orange); }
+.card-pink { background-color: var(--card-pink); }
+
+.date-badge {
+    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    background-color: #ffcccc; color: #000; font-weight: 900;
+    padding: 8px 25px; border-radius: 50px; font-size: 0.9rem;
+    border: 2px solid #000; box-shadow: 0px 4px 0px rgba(0,0,0,0.2); width: max-content;
+}
+.event-card h3 { font-family: var(--font-anton); font-size: 1.8rem; margin: 15px 0; text-transform: uppercase; text-shadow: 2px 2px 0px rgba(0,0,0,0.2); }
+.event-card .location { font-size: 0.85rem; font-weight: 700; margin-bottom: 25px; line-height: 1.5; }
+.btn-card {
+    background-color: var(--color-yellow); color: var(--color-pink);
+    padding: 10px 20px; font-weight: 900; text-transform: uppercase; width: 100%;
+    box-shadow: 4px 4px 0px rgba(165, 0, 110, 0.5); transition: 0.2s;
+}
+.btn-card:hover { transform: translateY(-2px); background-color: white; }
+
+.nav-arrow {
+    background-color: var(--color-yellow); color: var(--color-pink);
+    border: 3px solid var(--color-pink); width: 50px; height: 50px;
+    font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: 0.2s; flex-shrink: 0;
+}
+.nav-arrow:hover { background-color: var(--color-pink); color: var(--color-yellow); }
+
+/* Schedule Footer */
+
+
+/* --- 7. ABOUT SECTION --- */
+.about-section {
+    position: relative; background-color: var(--bg-salmon);
+    padding: 80px 0; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; color: #222;
+}
+.about-container {
+    display: flex; align-items: center; justify-content: center;
+    gap: 60px; max-width: 1100px; margin: 0 auto; width: 100%; padding: 0 20px;
+}
+.about-image-wrapper { position: relative; flex: 1; max-width: 400px; /* SIZE REDUCED */ padding: 10px; }
+.purple-backdrop {
+    position: absolute; top: 40px; right: -20px;
+    width: 100%; height: 100%; background-color: var(--purple-shadow); z-index: 1;
+}
+.framed-image {
+    position: relative; z-index: 2; width: 100%; height: auto;
+    border: 12px solid white; display: block; box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+.about-text { flex: 1; }
+.about-text p { font-size: 1.1rem; line-height: 1.8; text-align: justify; font-weight: 500; }
+.about-text strong { font-weight: 800; }
+
+/* About Footer */
+.social-box-yellow-purple {
+    background-color: var(--color-yellow); padding: 10px 20px;
+    border: 3px solid var(--purple-shadow); display: flex; gap: 15px;
+    box-shadow: 4px 4px 0px var(--purple-shadow);
+}
+.social-box-yellow-purple a { color: var(--purple-shadow); font-size: 1.3rem; transition: 0.3s; }
+.social-box-yellow-purple a:hover { color: var(--color-pink); }
+.scroll-up-btn-yellow-purple {
+    width: 50px; height: 50px; background: var(--color-yellow);
+    border: 3px solid var(--purple-shadow); color: var(--purple-shadow);
+    font-size: 1.5rem; cursor: pointer; transition: 0.3s;
+    box-shadow: 3px 3px 0px var(--purple-shadow);
+}
+.scroll-up-btn-yellow-purple:hover { transform: translateY(-3px); background-color: white; }
+
+/* Update bagian ini di style.css */
+
+.section-footer.about-adjust {
+    /* Gunakan Fixed agar tetap menempel di layar saat scroll */
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    /* Z-index tinggi agar berada di atas elemen lain (seperti gambar/video) */
+    z-index: 9999; 
+    
+    /* Padding untuk jarak dari tepi layar */
+    padding: 20px 40px; 
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    /* --- TRIK PENTING --- */
+    /* pointer-events: none; membuat area kosong di footer tembus pandang 
+       sehingga user tetap bisa klik konten di belakang footer */
+    pointer-events: none;
+}
+
+/* Tapi kita harus mengaktifkan kembali klik pada tombol & sosmed-nya */
+.section-footer.about-adjust .social-box-yellow-purple,
+.section-footer.about-adjust .scroll-up-btn-yellow-purple {
+    pointer-events: auto;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .navbar { padding: 15px 20px; }
+    .nav-links { display: none; }
+    
+    .hero .main-title { font-size: 2.5rem; }
+    .bottom-social, .bottom-corner-box { bottom: 15px; }
+    .bottom-social { left: 20px; } .bottom-corner-box { right: 20px; width: 30px; height: 30px; }
+    
+    .container, .about-container { flex-direction: column; text-align: center; gap: 40px; }
+    .event-text, .about-text p { text-align: center; }
+    .royal-title { font-size: 2.5rem; }
+    
+    .nav-arrow { display: none; }
+    .cards-container { flex-direction: column; align-items: center; }
+    .section-footer { padding: 0 20px; }
+    
+    .purple-backdrop { right: -10px; top: 20px; }
+}
