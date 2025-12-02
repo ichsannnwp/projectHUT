@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YKC Festival - Hari Jadi Yogyakarta Ke 270</title>
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylee.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     
@@ -21,7 +21,7 @@
         </div>
         
         <ul class="nav-links">
-            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#home" >Home</a></li>
             <li><a href="#event">Event</a></li>
             <li><a href="#about">about</a></li> </ul>
 
