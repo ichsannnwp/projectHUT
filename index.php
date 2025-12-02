@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YKC Festival - Hari Jadi Yogyakarta Ke 270</title>
     
-    <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display&family=Luckiest+Guy&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -22,7 +23,7 @@
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#event">Event</a></li>
-            <li><a href="#about">Galery</a></li> </ul>
+            <li><a href="#about">about</a></li> </ul>
 
         <a href="#schedule" class="btn-rect-pink">Event</a>
     </nav>
@@ -38,7 +39,7 @@
         <div class="hero-content">
             <h1 class="main-title">HARI JADI YOGYAKARTA<br>KE 270</h1>
             <p class="sub-title">"Nyawiji, Ngayomi, Ngayemi"</p>
-            <a href="#event" class="btn-rect-pink btn-large">LIHAT DETAIL</a>
+            <a href="detail.html" class="btn-rect-pink btn-large">LIHAT DETAIL</a>
         </div>
 
         
@@ -169,6 +170,6 @@
                 </button>
         </div>
 
-    <script src="scriptt.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

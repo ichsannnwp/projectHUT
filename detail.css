@@ -1,0 +1,248 @@
+/* --- 1. SETUP & VARIABEL --- */
+:root {
+    /* Warna Utama */
+    --color-pink: #d5006d;      /* Pink Tua (Teks Judul) */
+    --color-pink-accent: #880e4f; /* Pink Gelap (Bayangan Foto) */
+    --color-yellow: #FFF500;    /* Kuning Terang */
+    --color-teal: #004d4d;      /* Hijau Teal Gelap (Background Sejarah) */
+    --bg-peach: #ffccbc;        /* Warna Salem/Peach (Background Event) */
+    
+    /* Font */
+    --font-main: 'Montserrat', sans-serif;       /* Teks Isi */
+    --font-royal: 'DM Serif Display', serif;     /* JUDUL BARU (Elegan & Klasik) */
+    --font-fun: 'Luckiest Guy', cursive;         /* Judul Kartun (Opsional) */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    background-color: var(--color-teal); /* Default bg */
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- 2. NAVBAR (Tetap Konsisten) --- */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 40px; position: fixed; width: 100%; top: 0; z-index: 1000;
+    background: #1a1a40; /* Gelap Solid */
+}
+.logo { font-weight: 900; font-size: 1.8rem; color: white; }
+.ykc-yellow { color: var(--color-yellow); }
+.festival-pink { color: var(--color-pink); font-size: 0.8rem; display: block; text-align: right; margin-top: -5px; }
+
+.nav-links { display: flex; gap: 40px; }
+.nav-links a { font-weight: 700; color: white; transition: 0.3s; }
+.nav-links a.active, .nav-links a:hover { color: var(--color-yellow); }
+
+.btn-rect-pink {
+    background: var(--color-pink); color: var(--color-yellow);
+    padding: 8px 25px; font-weight: 900; text-transform: uppercase;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+    color: var(--color-yellow) !important;
+}
+
+/* --- 3. LAYOUT UMUM --- */
+/* Wrapper standar untuk section kiri-kanan */
+.content-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 60px; max-width: 1100px; margin: 0 auto; padding: 20px;
+}
+.reverse { flex-direction: row-reverse; }
+
+/* Wrapper KHUSUS Keraton & Sejarah (Tengah) */
+/* --- 3. LAYOUT UMUM (PERBAIKAN CENTER & PADDING) --- */
+
+/* --- 3. LAYOUT UMUM (PERBAIKAN CENTER & PADDING) --- */
+
+/* Wrapper untuk section Kiri-Kanan (Event) */
+.content-row {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    
+    /* CENTER & WIDTH CONTROL */
+    margin: 0 auto;  /* Wajib ada agar posisi di tengah */
+    width: 90%;      /* Ubah jadi 90% agar tidak mentok tepi layar */
+    max-width: 1100px; /* Batas maksimal lebar agar tidak terlalu melar di layar besar */
+    
+    /* PADDING INTERNAL */
+    padding: 40px 0; /* Padding atas bawah */
+    gap: 60px; /* Jarak antar elemen gambar dan teks */
+}
+
+/* Wrapper KHUSUS Keraton & Sejarah (Tengah) */
+.content-column {
+    display: flex;
+    flex-direction: column; /* Susun Atas-Bawah */
+    align-items: center;    /* Center item di dalam secara horizontal */
+    
+    /* CENTER & WIDTH CONTROL */
+    margin: 0 auto;
+    width: 90%;      /* Ubah jadi 90% agar aman di HP maupun Laptop */
+    max-width: 900px; /* Lebih sempit agar enak dibaca */
+    
+    /* PADDING INTERNAL */
+    padding: 40px 0; 
+    gap: 30px; /* Jarak antara Foto dan Teks */
+}
+
+/* Pastikan Section pembungkusnya mendukung centering */
+.section-teal, .section-peach, .section-yellow {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Memaksa anak elemen (.content-row) ke tengah */
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* --- 4. STYLE GAMBAR (FRAME PINK) --- */
+.col-image { flex: 1; display: flex; justify-content: center; }
+.col-text { flex: 1; }
+
+.image-frame-pink {
+    position: relative; z-index: 2;
+    border-radius: 15px;
+    width: fit-content; /* Agar frame pas dengan gambar */
+}
+
+.image-frame-pink img {
+    width: 100%; 
+    max-width: 450px; /* Ukuran standar */
+    height: auto;
+    border-radius: 15px; 
+    display: block;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Kotak Pink di Belakang Foto */
+.image-frame-pink::after {
+    content: ''; position: absolute;
+    top: 15px; left: 15px; /* Offset bayangan */
+    width: 100%; height: 100%;
+    background-color: var(--color-pink-accent);
+    border-radius: 15px;
+    z-index: -1;
+}
+
+/* KHUSUS Gambar Keraton (Lebih Besar & Lebar) */
+.center-img img { 
+    max-width: 700px; /* Diperlebar agar gagah */
+    width: 100%;
+}
+
+/* --- 5. STYLE FONT & JUDUL --- */
+
+/* JUDUL EVENT (Pink di background Peach) */
+.title-pink-bold {
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 900;
+    font-size: 3rem; 
+    color: var(--color-pink-accent);
+    text-transform: uppercase; 
+    line-height: 1; 
+    margin-bottom: 25px;
+}
+
+/* JUDUL SEJARAH (Kuning di background Teal) */
+/* PERBAIKAN: Menggunakan DM Serif Display agar lebih Bagus & Klasik */
+.title-yellow-shadow {
+    font-family: var(--font-royal); /* Font baru: DM Serif */
+    font-size: 3.8rem; /* Lebih besar */
+    color: var(--color-yellow);
+    text-shadow: 3px 3px 0px var(--color-pink); /* Shadow Pink */
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.1;
+}
+
+/* Teks Paragraf Biasa */
+.text-dark { 
+    font-weight: 600; line-height: 1.6; text-align: justify; color: #222; font-size: 1.05rem;
+}
+.text-white-justify { 
+    font-size: 1.1rem; 
+    line-height: 1.8; 
+    text-align: justify; /* Rata Kiri Kanan */
+    font-weight: 500; 
+    color: white;
+    width: 100%; /* Pastikan teks memenuhi container */
+}
+
+/* --- 6. SECTION BACKGROUNDS --- */
+
+/* Hero Mini (Header) */
+.hero-mini {
+    height: 60vh; position: relative; 
+    display: flex; align-items: center; justify-content: center;
+    background: url('assets/detail-bg.jpg') no-repeat center center/cover;
+    margin-top: 80px; 
+}
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(26,26,64,0.9), rgba(26,26,64,0.4));
+}
+.hero-mini .content-wrapper { position: relative; z-index: 2; text-align: left; padding: 0 20px;}
+.intro-title { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: white; }
+.intro-desc { font-size: 1.1rem; line-height: 1.6; max-width: 600px; color: white; }
+
+/* Section Colors */
+.section-teal { background-color: var(--color-teal); padding: 80px 0; }
+.section-peach { background-color: var(--bg-peach); padding: 80px 0; }
+.section-yellow { background-color: var(--color-yellow); padding: 80px 0; text-align: center; }
+
+/* --- 7. AFTERMOVIE SECTION --- */
+.watch-text {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: 3.5rem; color: #ff5c8d; line-height: 1;
+}
+.highlight-wrapper { display: inline-block; position: relative; margin-top: 10px; }
+.aftermovie-text {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: 4rem; color: #ff5c8d; position: relative; z-index: 2;
+}
+.highlight-wrapper::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 110%; height: 80%; background: white;
+    transform: translate(-50%, -50%) rotate(-3deg); z-index: 1;
+}
+
+/* --- 8. FOOTER FLOATING --- */
+.floating-footer {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    padding: 20px 40px; display: flex; justify-content: space-between; align-items: flex-end;
+    pointer-events: none; z-index: 9999;
+}
+.social-box, .up-btn { pointer-events: auto; }
+
+.social-box {
+    background: var(--color-yellow); padding: 10px 20px;
+    border: 2px solid var(--color-pink); display: flex; gap: 15px;
+    box-shadow: 4px 4px 0px var(--color-pink);
+}
+.social-box a { color: var(--color-pink); font-size: 1.2rem; }
+
+.up-btn {
+    width: 50px; height: 50px; background: var(--color-yellow);
+    border: 2px solid var(--color-pink); color: var(--color-pink);
+    font-size: 1.5rem; cursor: pointer;
+    box-shadow: 4px 4px 0px var(--color-pink);
+}
+
+/* --- 9. ANIMASI & RESPONSIVE --- */
+.fade-in { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+    .content-row, .content-row.reverse { flex-direction: column; gap: 40px; }
+    .title-pink-bold { font-size: 2.2rem; text-align: center; }
+    .title-yellow-shadow { font-size: 2.8rem; }
+    .center-img img { max-width: 100%; }
+    .text-white-justify, .text-dark { text-align: left; }
+    .intro-title { font-size: 2.2rem; }
+    .floating-footer { padding: 10px 20px; }
+}

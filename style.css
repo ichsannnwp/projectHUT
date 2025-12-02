@@ -1,7 +1,7 @@
 /* --- 1. SETUP & VARIABEL --- */
 :root {
-    --color-pink: #FF00CC;
-    --color-yellow: #FFF500;
+    --color-pink: #b62599;
+    --color-yellow: #f0ea53;
     --color-dark-blue: #1a1a40;
     --color-white: #ffffff;
     
@@ -20,6 +20,7 @@
     --font-main: 'Montserrat', sans-serif;
     --font-serif: 'DM Serif Display', serif;
     --font-anton: 'Anton', sans-serif;
+    --font-title: 'Montserrat', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -130,12 +131,12 @@ html { scroll-behavior: smooth; }
 }
 .event-text { flex: 1; text-align: left; }
 .royal-title {
-    font-family: var(--font-serif); font-size: 3.5rem;
-    color: var(--color-pink); line-height: 1.1; margin-bottom: 25px;
+    font-family: var(--font-title); font-size: 3.5rem;
+    color: var(--color-dark-blue); line-height: 1.1; margin-bottom: 25px;
 }
 .royal-desc {
     font-family: var(--font-main); font-weight: 600; font-size: 1rem;
-    line-height: 1.6; margin-bottom: 30px; color: #222; text-align: justify;
+    line-height: 1.6; margin-bottom: 30px; color: #051d41; text-align: justify;
 }
 .shadow-style { box-shadow: 5px 5px 0px rgba(128, 0, 128, 0.4); font-size: 1.2rem; }
 
@@ -270,7 +271,7 @@ html { scroll-behavior: smooth; }
     border: 12px solid white; display: block; box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
 }
 .about-text { flex: 1; }
-.about-text p { font-size: 1.1rem; line-height: 1.8; text-align: justify; font-weight: 500; }
+.about-text p { font-size: 1.0rem; line-height: 1.8; text-align: justify; font-weight: 500; }
 .about-text strong { font-weight: 800; }
 
 /* About Footer */
