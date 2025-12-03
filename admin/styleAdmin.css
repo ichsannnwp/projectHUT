@@ -1,0 +1,127 @@
+/* Reset & Base */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+body { background-color: #ffffff; }
+
+/* ========== LOGIN PAGE ========== */
+.login-body {
+    background: #fdfdfd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.login-card {
+    width: 400px;
+    background: #d9d9d9; /* Warna abu sesuai screenshot */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.login-header {
+    background: #f4d03f; /* Kuning JRF */
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.login-header img { width: 40px; }
+.login-header h2 { color: #000; font-weight: bold; }
+
+.login-form { padding: 30px; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+.form-group input {
+    width: 100%; padding: 10px;
+    border: 1px solid #000; border-radius: 4px;
+    background: #e0e0e0;
+}
+.btn-login {
+    width: 100%; padding: 10px;
+    background: #00c800; /* Hijau terang */
+    color: white; border: 1px solid #000;
+    font-weight: bold; font-size: 16px; cursor: pointer;
+    margin-top: 10px;
+}
+
+/* ========== DASHBOARD ========== */
+.admin-header {
+    background: #f4d03f;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-left { display: flex; align-items: center; gap: 15px; }
+.header-left img { width: 50px; }
+.header-left h1 { font-size: 28px; font-weight: bold; }
+
+.btn-logout {
+    background: #c82333; color: white;
+    padding: 8px 20px; text-decoration: none;
+    font-weight: bold; border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.content-wrapper { padding: 40px; }
+
+/* Table Styling */
+.table-container {
+    width: 100%;
+    border: 2px solid #000;
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+    background: #f4d03f;
+    padding: 15px;
+    border: 1px solid #000;
+    text-align: center; font-weight: bold;
+}
+td {
+    padding: 12px;
+    border: 1px solid #000;
+    text-align: center; vertical-align: middle;
+}
+/* Zebra Striping (Pinkish & White) */
+tr:nth-child(odd) { background: #fff0f0; } /* Pink sangat muda */
+tr:nth-child(even) { background: #ffffff; }
+
+.btn-aksi {
+    padding: 5px 15px; color: white;
+    text-decoration: none; border-radius: 3px;
+    font-size: 14px; margin: 0 2px; display: inline-block;
+}
+.btn-edit { background: #66b3ff; } /* Biru muda */
+.btn-hapus { background: #ff4d4d; } /* Merah muda */
+
+/* ========== MODAL ========== */
+.modal-overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center; align-items: center;
+}
+.modal-box {
+    background: #d9d9d9; /* Abu-abu */
+    width: 500px; padding: 20px;
+    border-radius: 5px; position: relative;
+}
+.modal-form label { font-weight: bold; display: block; margin-top: 10px; }
+.modal-form input, .modal-form textarea, .modal-form select {
+    width: 100%; padding: 8px; margin-top: 5px;
+    border: 1px solid #000; background: #e0e0e0;
+}
+.btn-save {
+    background: #00c800; color: white;
+    padding: 10px 30px; border: 1px solid #000;
+    font-weight: bold; cursor: pointer;
+    display: block; margin: 20px 0 0 auto;
+}
