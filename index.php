@@ -81,7 +81,7 @@
                     <div class="date-badge">10 OKTOBER</div>
                     <h3>JOGJA RUNNING FESTIVAL</h3>
                     <p class="location">LOKASI : TITIK NOL<br>GRATIS UNTUK UMUM</p>
-                    <a href="CRUD/login.php" class="btn-card">DAFTAR SEKARANG</a>
+                    <a href="user/index.php" class="btn-card">DAFTAR SEKARANG</a>
                 </div>
 
                 <div class="event-card card-orange">
