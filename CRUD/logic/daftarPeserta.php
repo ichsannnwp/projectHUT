@@ -1,5 +1,5 @@
 <?php
-include "../connection.php";
+include "../../connection.php";
 
 // Cek apakah sudah login
 if(!isset($_SESSION['user_id'])){

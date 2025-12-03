@@ -1,13 +1,16 @@
-// Modal Functions
 function openModal() {
     document.getElementById('registerModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
     document.getElementById('registerModal').style.display = 'none';
-    // Remove error parameter from URL
+    document.body.style.overflow = 'auto';
+    
     if(window.location.href.includes('?')) {
-        window.location.href = window.location.pathname + window.location.hash;
+        const baseUrl = window.location.pathname;
+        const hash = window.location.hash;
+        window.history.replaceState({}, document.title, baseUrl + hash);
     }
 }
 
@@ -18,9 +21,9 @@ window.onclick = function(event) {
     }
 }
 
-// Route Map Functions
-let map;
-let currentRoute = null;
+// ========== ROUTE MAP ==========
+let map = null;
+let routeLayer = null;
 
 const routes = {
     '5K': {
@@ -28,22 +31,29 @@ const routes = {
         zoom: 14,
         path: [
             [-7.8110, 110.3645],
+            [-7.8080, 110.3660],
             [-7.8050, 110.3670],
+            [-7.8020, 110.3680],
             [-7.7990, 110.3690],
             [-7.7956, 110.3695],
             [-7.7920, 110.3710],
-            [-7.7880, 110.3730]
+            [-7.7890, 110.3720],
+            [-7.7860, 110.3730]
         ]
     },
     '10K': {
         center: [-7.7500, 110.4000],
         zoom: 13,
         path: [
-            [-7.7700, 110.3800],
-            [-7.7600, 110.3900],
-            [-7.7500, 110.4000],
-            [-7.7400, 110.4100],
-            [-7.7300, 110.4200]
+            [-7.7750, 110.3800],
+            [-7.7700, 110.3850],
+            [-7.7650, 110.3900],
+            [-7.7600, 110.3950],
+            [-7.7550, 110.4000],
+            [-7.7500, 110.4050],
+            [-7.7450, 110.4100],
+            [-7.7400, 110.4150],
+            [-7.7350, 110.4200]
         ]
     },
     'Half': {
@@ -51,57 +61,87 @@ const routes = {
         zoom: 12,
         path: [
             [-7.8000, 110.3700],
+            [-7.8100, 110.3750],
             [-7.8200, 110.3800],
+            [-7.8300, 110.3850],
+            [-7.8400, 110.3900],
             [-7.8500, 110.4000],
+            [-7.8600, 110.4100],
             [-7.8700, 110.4200],
+            [-7.8800, 110.4300],
             [-7.9000, 110.4400]
         ]
     }
 };
 
-function showMap(routeType) {
-    const routeCards = document.getElementById('routeCards');
-    const routeMapContainer = document.getElementById('routeMapContainer');
+function selectRoute(type) {
+    const cardsWrapper = document.getElementById('routeCardsWrapper');
+    const mapWrapper = document.getElementById('routeMapWrapper');
     
-    routeCards.classList.add('shifted');
-    routeMapContainer.classList.add('active');
+    // Hide cards and show map
+    cardsWrapper.classList.add('minimized');
+    mapWrapper.classList.add('active');
     
-    // Initialize map if not already initialized
+    // Initialize map if first time
     if (!map) {
         map = L.map('map');
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
+            attribution: '© OpenStreetMap'
         }).addTo(map);
     }
     
-    // Update map view and route
-    const route = routes[routeType];
+    const route = routes[type];
+    
+    // Update map view
     map.setView(route.center, route.zoom);
     
-    // Remove previous route if exists
-    if (currentRoute) {
-        map.removeLayer(currentRoute);
+    // Remove old route
+    if (routeLayer) {
+        map.removeLayer(routeLayer);
     }
     
-    // Draw new route
-    currentRoute = L.polyline(route.path, {
-        color: '#0066cc',
-        weight: 5,
-        opacity: 0.7
+    // Remove markers
+    map.eachLayer(function(layer) {
+        if (layer instanceof L.Marker) {
+            map.removeLayer(layer);
+        }
+    });
+    
+    // Draw route
+    routeLayer = L.polyline(route.path, {
+        color: '#FF4444',
+        weight: 6,
+        opacity: 0.8
     }).addTo(map);
     
-    // Add markers for start and finish
-    L.marker(route.path[0]).addTo(map)
-        .bindPopup('Start')
-        .openPopup();
+    // Start marker (green)
+    L.marker(route.path[0], {
+        icon: L.divIcon({
+            html: '<div style="background:#28a745;width:20px;height:20px;border-radius:50%;border:3px solid white;box-shadow:0 2px 5px rgba(0,0,0,0.3)"></div>',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+        })
+    }).addTo(map).bindPopup('Start').openPopup();
     
-    L.marker(route.path[route.path.length - 1]).addTo(map)
-        .bindPopup('Finish');
+    // Finish marker (red)
+    L.marker(route.path[route.path.length - 1], {
+        icon: L.divIcon({
+            html: '<div style="background:#dc3545;width:20px;height:20px;border-radius:50%;border:3px solid white;box-shadow:0 2px 5px rgba(0,0,0,0.3)"></div>',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+        })
+    }).addTo(map).bindPopup('Finish');
+    
+    // Fit bounds
+    setTimeout(() => {
+        map.fitBounds(routeLayer.getBounds(), {padding: [50, 50]});
+    }, 100);
 }
 
-// Gallery Carousel
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-image');
+// ========== GALLERY CAROUSEL ==========
+let currentIndex = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const totalSlides = slides.length;
 
 function showSlide(index) {
     slides.forEach((slide, i) => {
@@ -110,82 +150,133 @@ function showSlide(index) {
             slide.classList.add('active');
         }
     });
-    updateCarouselButtons();
+    updateArrowColors();
 }
 
-function changeSlide(direction) {
-    currentSlide += direction;
-    
-    if (currentSlide >= slides.length) {
-        currentSlide = 0;
-    } else if (currentSlide < 0) {
-        currentSlide = slides.length - 1;
-    }
-    
-    showSlide(currentSlide);
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
 }
 
-function updateCarouselButtons() {
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentIndex);
+}
+
+function updateArrowColors() {
     const prevBtn = document.querySelector('.carousel-btn.prev');
     const nextBtn = document.querySelector('.carousel-btn.next');
-    const activeImage = document.querySelector('.carousel-image.active');
+    const activeImg = document.querySelector('.carousel-slide.active');
     
-    if (activeImage && prevBtn && nextBtn) {
-        // Get average brightness of image to determine button color
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = activeImage.width;
-        canvas.height = activeImage.height;
+    if (!activeImg || !prevBtn || !nextBtn) return;
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    
+    img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
         
         try {
-            ctx.drawImage(activeImage, 0, 0);
+            ctx.drawImage(img, 0, 0);
             
-            // Sample colors from button positions
-            const leftSample = ctx.getImageData(50, canvas.height/2, 1, 1).data;
-            const rightSample = ctx.getImageData(canvas.width - 50, canvas.height/2, 1, 1).data;
+            // Sample left side
+            const leftX = Math.floor(canvas.width * 0.1);
+            const leftY = Math.floor(canvas.height * 0.5);
+            const leftData = ctx.getImageData(leftX, leftY, 1, 1).data;
+            const leftBright = (leftData[0] + leftData[1] + leftData[2]) / 3;
             
-            const leftBrightness = (leftSample[0] + leftSample[1] + leftSample[2]) / 3;
-            const rightBrightness = (rightSample[0] + rightSample[1] + rightSample[2]) / 3;
+            // Sample right side
+            const rightX = Math.floor(canvas.width * 0.9);
+            const rightY = Math.floor(canvas.height * 0.5);
+            const rightData = ctx.getImageData(rightX, rightY, 1, 1).data;
+            const rightBright = (rightData[0] + rightData[1] + rightData[2]) / 3;
             
-            prevBtn.style.background = leftBrightness > 128 ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)';
-            prevBtn.style.color = leftBrightness > 128 ? 'white' : 'black';
+            // Set prev button colors
+            if (leftBright > 128) {
+                prevBtn.style.background = 'rgba(0, 0, 0, 0.6)';
+                prevBtn.style.color = 'white';
+            } else {
+                prevBtn.style.background = 'rgba(255, 255, 255, 0.6)';
+                prevBtn.style.color = 'black';
+            }
             
-            nextBtn.style.background = rightBrightness > 128 ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)';
-            nextBtn.style.color = rightBrightness > 128 ? 'white' : 'black';
+            // Set next button colors
+            if (rightBright > 128) {
+                nextBtn.style.background = 'rgba(0, 0, 0, 0.6)';
+                nextBtn.style.color = 'white';
+            } else {
+                nextBtn.style.background = 'rgba(255, 255, 255, 0.6)';
+                nextBtn.style.color = 'black';
+            }
         } catch(e) {
-            // Fallback to default if CORS issues
-            prevBtn.style.background = 'rgba(0, 0, 0, 0.5)';
+            // Fallback
+            prevBtn.style.background = 'rgba(0, 0, 0, 0.6)';
             prevBtn.style.color = 'white';
-            nextBtn.style.background = 'rgba(0, 0, 0, 0.5)';
+            nextBtn.style.background = 'rgba(0, 0, 0, 0.6)';
             nextBtn.style.color = 'white';
         }
-    }
+    };
+    
+    img.src = activeImg.src;
 }
 
-// Auto-play carousel
-setInterval(() => {
-    changeSlide(1);
-}, 5000);
+// Auto slide every 5 seconds
+let autoSlide = setInterval(nextSlide, 5000);
 
-// Initialize carousel on page load
+// Pause on hover
+const carousel = document.querySelector('.gallery-carousel');
+if (carousel) {
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoSlide);
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(nextSlide, 5000);
+    });
+}
+
+// Initialize
 if (slides.length > 0) {
     showSlide(0);
 }
 
-// Notification auto-hide
+// ========== NOTIFICATION ==========
 setTimeout(() => {
-    const notification = document.querySelector('.notification.show');
-    if (notification) {
-        notification.classList.remove('show');
+    const toast = document.querySelector('.notification-toast.show');
+    if (toast) {
+        toast.style.bottom = '-100px';
     }
 }, 3000);
 
-// Navbar scroll effect
+// ========== NAVBAR SCROLL ==========
 window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 100) {
-        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.25)';
     } else {
         navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     }
+});
+
+// ========== SMOOTH SCROLL ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const navbar = document.getElementById('navbar');
+                const offset = navbar.offsetHeight;
+                const targetPos = target.offsetTop - offset;
+                window.scrollTo({
+                    top: targetPos,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
 });

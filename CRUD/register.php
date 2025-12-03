@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 
 if(isset($_SESSION['user_id'])){
     header("Location: index.php");
@@ -20,7 +20,7 @@ if(isset($_SESSION['user_id'])){
     
     <div class="auth-container">
         <div class="auth-header">
-            <img src="logo.png" alt="JRF Logo" class="auth-logo">
+            <img src="../assets/jrfLogo.png" alt="JRF Logo" class="auth-logo">
             <h1>Register</h1>
         </div>
         
